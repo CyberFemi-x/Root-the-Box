@@ -1,0 +1,46 @@
+Stage 6: Root the Box - Exploit Chain as Code
+
+Phase:
+Environment Preparation
+
+Activity:
+VM Snapshot Creation
+
+Date:
+2026-07-29
+
+
+Command:
+vagrant snapshot save vulnerable clean-vulnerable
+
+
+Output:
+
+==> vulnerable: Snapshotting the machine as 'clean-vulnerable'...
+==> vulnerable: Snapshot saved!
+
+
+Purpose:
+
+Created a clean restore point for the vulnerable VM before security testing.
+
+
+
+Command:
+vagrant snapshot save patched clean-patched
+
+
+Output:
+
+==> patched: Snapshotting the machine as 'clean-patched'...
+==> patched: Snapshot saved!
+
+
+Purpose:
+
+Created a clean restore point for the patched VM before remediation validation.
+
+
+Status:
+
+Both vulnerable and patched VMs have verified clean snapshots.

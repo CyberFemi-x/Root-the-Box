@@ -1,0 +1,49 @@
+Stage 6: Root the Box - Exploit Chain as Code
+
+Phase:
+Environment Preparation
+
+Activity:
+Vulnerable and Patched VM Deployment
+
+
+Command:
+
+vagrant up vulnerable patched
+
+
+Result:
+
+Both virtual machines were successfully created and provisioned.
+
+
+Evidence:
+
+Vulnerable VM:
+- Ubuntu 22.04 deployed
+- Host-only network configured
+- NetForge service provisioned
+
+
+Patched VM:
+- Ubuntu 22.04 deployed
+- Host-only network configured
+- NetForge service provisioned
+
+
+Verification:
+
+Command:
+
+vagrant status
+
+
+Output:
+
+vulnerable running (virtualbox)
+patched running (virtualbox)
+
+
+Status:
+
+Environment successfully prepared for security assessment.
