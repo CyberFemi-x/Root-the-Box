@@ -11,44 +11,40 @@ Time: 13:10:44
 
 
 Command:
-
 ```powershell
 $env:UBI_STAGE6_MARKER = "UBI-A6-F66C148ABB4D"
 ```
-
 Output: No output (environment variable successfully created).
-
 Purpose: Configured the assigned private Stage 6 evidence marker for the official B2 correction procedure.
 
 
 Command:
-
 ```powershell
 vagrant ssh vulnerable -c "sudo bash /vagrant/install-assigned-flags.sh $env:UBI_STAGE6_MARKER"
 ```
 
 Output:
-
 ```text
 Installed assigned Stage 6 markers at /home/support/user.txt and /root/root.txt
 ```
-
 Purpose: Applied the official B2 programme correction by installing the assigned `user.txt` and `root.txt` markers into the existing vulnerable VM without rebuilding the environment.
 
 
 Command:
-
 ```powershell
 vagrant ssh patched -c "sudo bash /vagrant/install-assigned-flags.sh $env:UBI_STAGE6_MARKER"
 ```
 
 Output:
-
 ```text
 Installed assigned Stage 6 markers at /home/support/user.txt and /root/root.txt
 ```
-
 Purpose: Applied the official B2 programme correction by installing the assigned `user.txt` and `root.txt` markers into the existing patched VM without rebuilding the environment.
 
 
-Status: The official B2 correction was successfully applied to both virtual machines. The assigned Stage 6 markers were installed without rebuilding the VMs, preserving the existing B1 environment as instructed by the programme. The environment is now ready for updated clean snapshots and continuation of the candidate-authored exploit chain.
+Status: The official B2 correction was successfully 
+applied to both virtual machines. The assigned Stage 
+6 markers were installed without rebuilding the VMs, 
+preserving the existing B1 environment as instructed by 
+the programme. The environment is now ready for updated clean 
+snapshots and continuation of the candidate-authored exploit chain.

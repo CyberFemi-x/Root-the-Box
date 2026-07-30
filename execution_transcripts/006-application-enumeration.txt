@@ -1,0 +1,34 @@
+006 - Application Enumeration and Source Review
+
+Stage 6: Root the Box - Exploit Chain as Code
+
+Phase: Application Enumeration
+
+Activity:HTTP Endpoint Enumeration
+
+Date: 2026-07-30 | Time: 13:55:23
+
+Command: curl http://127.0.0.1:8080/
+Output: {"error":"not found"}
+Purpose: Verified that no default application page was exposed.
+
+Command: curl -i http://127.0.0.1:8080/
+Output (Relevant): HTTP/1.0 404 Not Found
+Server: BaseHTTP/0.6 Python/3.10.12
+Purpose: Collected HTTP response information from the application.
+
+Command: curl http://127.0.0.1:8080/health
+Output: {"status":"ok"}
+Purpose: Confirmed that the application service was operational.
+
+Command: curl -X OPTIONS -i http://127.0.0.1:8080/
+Output (Relevant): HTTP/1.0 501 Unsupported method ('OPTIONS')
+Purpose: Verified that unsupported HTTP methods were rejected.
+
+Command: sudo sed -n '1,220p' /opt/netforge-support/app.py
+Output (Summary):The application source code was reviewed. Two endpoints (/health and /diagnose) were identified, and the /diagnose endpoint was selected for further security assessment.
+Purpose: Reviewed the application source code to identify available functionality and potential attack surfaces.
+
+Status:
+Application enumeration identified /diagnose as the primary endpoint
+for subsequent vulnerability validation.
