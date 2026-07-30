@@ -1,0 +1,108 @@
+005 - Environment Correction and Service Restoration
+
+Stage 6: Root the Box - Exploit Chain as Code
+
+Phase:
+
+Environment Verification
+
+Activity:
+
+Application Permission Correction and Service Restoration
+
+Date:
+
+2026-07-30
+
+Command:
+
+sudo cat /etc/systemd/system/netforge-support.service
+
+Output (Relevant):
+
+User=support
+Group=support
+ExecStart=/usr/bin/python3 /opt/netforge-support/app.py
+
+Purpose:
+
+Confirmed that the service executes under the support account and launches /opt/netforge-support/app.py.
+
+Command:
+
+sudo cat /etc/netforge-support.env
+
+Output:
+
+NETFORGE_MODE=vulnerable
+
+Purpose:
+
+Verified that the vulnerable application configuration was active.
+
+Command:
+
+sudo chown root:support /opt/netforge-support/app.py
+
+Output:
+
+(No output)
+
+Purpose:
+
+Applied a minimal ownership correction so that the service account (support) could read the application while maintaining restricted access.
+
+Command:
+
+ls -l /opt/netforge-support/app.py
+
+Output:
+
+-rwxr-x--- 1 root support 1704 Jul 29 22:34 /opt/netforge-support/app.py
+
+Purpose:
+
+Verified that the ownership change was successfully applied.
+
+Command:
+
+sudo systemctl restart netforge-support
+
+Output:
+
+(No output)
+
+Purpose:
+
+Restarted the service after applying the ownership correction.
+
+Command:
+
+systemctl status netforge-support --no-pager
+
+Output (Relevant):
+
+● netforge-support.service - NetForge isolated support target
+Loaded: loaded (/etc/systemd/system/netforge-support.service; enabled)
+Active: active (running)
+Main PID: 1615 (python3)
+
+Purpose:
+
+Confirmed that the application service started successfully after the correction.
+
+Command:
+
+ss -tulpn | grep 8080
+
+Output:
+
+tcp LISTEN 0 5 0.0.0.0:8080 0.0.0.0:*
+
+Purpose:
+
+Verified that the application was successfully listening on the expected TCP port.
+
+Status:
+
+The environment issue preventing service startup was identified, documented, and corrected. The NetForge support service is now operational and ready for application assessment and exploit-chain development.

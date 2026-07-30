@@ -1,0 +1,152 @@
+004 - Initial Enumeration and Service Verification
+
+Stage 6: Root the Box - Exploit Chain as Code
+
+Phase:
+
+Target Enumeration
+
+Activity:
+
+Initial Environment Verification
+
+Date:
+
+2026-07-30
+
+Command:
+
+vagrant ssh vulnerable
+
+Output:
+
+Last login: Thu Jul 30 12:01:22 2026 from 10.0.2.2
+vagrant@nf-eh-a2-vulnerable:~$
+
+Purpose:
+
+Connected to the vulnerable virtual machine to begin the assessment.
+
+Command:
+
+whoami
+
+Output:
+
+vagrant
+
+Purpose:
+
+Verified the current user account.
+
+Command:
+
+id
+
+Output:
+
+uid=1000(vagrant) gid=1000(vagrant) groups=1000(vagrant)
+
+Purpose:
+
+Confirmed the effective user ID and group memberships.
+
+Command:
+
+hostname
+
+Output:
+
+nf-eh-a2-vulnerable
+
+Purpose:
+
+Verified that the session was connected to the vulnerable virtual machine.
+
+Command:
+
+pwd
+
+Output:
+
+/home/vagrant
+
+Purpose:
+
+Confirmed the current working directory.
+
+Command:
+
+ls -la
+
+Output:
+
+total 32
+drwxr-x--- 4 vagrant vagrant 4096 Jan 11  2024 .
+drwxr-xr-x 4 root    root    4096 Jul 29 22:34 ..
+-rw-r--r-- 1 vagrant vagrant  220 Jan  6  2022 .bash_logout
+-rw-r--r-- 1 vagrant vagrant 3775 Jan 11  2024 .bashrc
+drwxr-xr-x 2 vagrant vagrant 4096 Jan 11  2024 .cache
+-rw-r--r-- 1 vagrant vagrant  807 Jan  6  2022 .profile
+drwx------ 2 vagrant vagrant 4096 Jul 29 22:34 .ssh
+-rw-r--r-- 1 vagrant vagrant   13 Jan 11  2024 .vimrc
+
+Purpose:
+
+Observed the contents of the current user's home directory before beginning application assessment.
+
+Command:
+
+systemctl status netforge-support --no-pager
+
+Output:
+
+× netforge-support.service - NetForge isolated support target
+Loaded: loaded (/etc/systemd/system/netforge-support.service; enabled; vendor preset: enabled)
+Active: failed (Result: exit-code)
+
+Purpose:
+
+Verified the operational status of the target service before testing.
+
+Command:
+
+ss -tulpn | grep 8080
+
+Output:
+
+No output
+
+Purpose:
+
+Verified that no process was listening on TCP port 8080.
+
+Command:
+
+sudo journalctl -u netforge-support --no-pager -n 30
+
+Output (Relevant):
+
+/usr/bin/python3: can't open file '/opt/netforge-support/app.py': [Errno 13] Permission denied
+
+Purpose:
+
+Collected diagnostic information explaining why the service failed to start.
+
+Command:
+
+sudo ls -ld /opt/netforge-support
+sudo ls -l /opt/netforge-support/app.py
+
+Output:
+
+drwxr-x--- 2 root support 4096 Jul 29 22:34 /opt/netforge-support
+-rwxr-x--- 1 root root 1704 Jul 29 22:34 /opt/netforge-support/app.py
+
+Purpose:
+
+Verified directory and application file ownership and permissions to determine the cause of the service startup failure.
+
+Status:
+
+Initial enumeration completed successfully. The investigation identified that the target service failed to start because the service account (support) did not have permission to read /opt/netforge-support/app.py.
