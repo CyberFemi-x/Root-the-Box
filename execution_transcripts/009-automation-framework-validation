@@ -5,7 +5,7 @@ Procedure:
 
 Executed exploit.py from the Windows host.
 Supplied the target IP address (192.168.77.21) as a command-line argument.
-The script performed IP validation and a preflight TCP connectivity check against the NetForge service on port 8080.
+The script performed IP validation and a preflight TCP connectivity check against the NetForge service on port 8080. -
 
 Result:
 The framework successfully connected to the target service, confirming that communication between the Windows host and the vulnerable virtual machine was functioning correctly. The script then entered the main workflow without any runtime errors, demonstrating that the automation framework was correctly configured and ready for further development.
