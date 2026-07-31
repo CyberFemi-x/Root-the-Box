@@ -1,0 +1,25 @@
+013 Privilege Escalation Target Permission
+
+Date: 01/08/2026 | Time =:00:27:58
+
+Confirmed via SSH (bypassing NoNewPrivileges): 
+support-backup is root-owned, group-executable but
+not world-readable (-rwxr-x---). /srv/support/uploads 
+is writable by support (drwxr-x---, owner support:support),
+containing test files from earlier enumeration. This confirms
+support fully controls filenames in the directory support-backup
+presumably archives as root, consistent with a tar wildcard 
+privilege-escalation path.
+
+Output:
+-rwxr-x--- 1 root    root     105 Jul 29 22:34 /usr/local/sbin/support-backup
+
+/srv/support/uploads:
+total 8
+drwxr-x--- 2 support support 4096 Jul 31 00:30 .
+drwxr-xr-x 3 root    root    4096 Jul 29 22:34 ..
+-rw-r--r-- 1 support support    0 Jul 31 00:30 demo-file
+-rw-r--r-- 1 support support    0 Jul 30 13:05 testfile
+
+Warning: Permanently added '192.168.77.21' (ED25519) to the list of known hosts.
+

