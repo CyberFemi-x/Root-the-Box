@@ -1,0 +1,34 @@
+017 – Reliability Testing: 5/5 Clean-Snapshot Runs
+
+Date: 01/08/2026 | Time: 13:06:23
+Procedure:
+
+A reliability test runner (reliability.py) was implemented to automate the
+full evidence requirement: restore a clean VM snapshot (clean-vulnerable-v3)
+before each run, poll /health until the NetForge service responds, execute
+the complete exploit chain via run_chain(), and record structured results.
+
+The runner was executed for 5 consecutive iterations:
+
+    python reliability.py http://192.168.77.21:8080 192.168.77.21
+
+Result:
+
+=== Run 1/5 === Result: SUCCESS (4.38s)
+=== Run 2/5 === Result: SUCCESS (3.09s)
+=== Run 3/5 === Result: SUCCESS (3.33s)
+=== Run 4/5 === Result: SUCCESS (3.84s)
+=== Run 5/5 === Result: SUCCESS (4.17s)
+
+=== Summary: 5/5 runs succeeded ===
+
+All 5 runs obtained both the user flag and root flag from a freshly
+restored clean snapshot, and completed idempotent cleanup successfully.
+Full run durations ranged from 3.09s to 4.38s. Structured results for all
+5 runs, including per-run flags, timing, and cleanup status, were written
+to reliability.json.
+
+An earlier single-run dry test surfaced a Windows subprocess issue calling
+the Vagrant CLI (list-form subprocess.run without shell=True hanging
+indefinitely on the .bat wrapper); this was corrected by switching to
+shell=True with an extended timeout before the 5-run test was executed.
