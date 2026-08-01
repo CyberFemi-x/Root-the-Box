@@ -1,7 +1,8 @@
 018: Patch1 - Diagnose Injection 
 
 Date: 01/08/2026 | Time: 13:06:23
+
 Confirmed patched target (192.168.77.22) rejects command injection attempt via /diagnose.
- Payload 127.0.0.1; id returns {"error": "'127.0.0.1; id' does not appear to be an IPv4 or IPv6 address"} 
- rather than executing the injected id command, confirming the root-cause fix (ipaddress.ip_address() 
- validation + shell=False) is active and effective.
+Payload 127.0.0.1; id returns {"error": "'127.0.0.1; id' does not appear to be an IPv4 or IPv6 address"} 
+rather than executing the injected id command, confirming the root-cause fix (ipaddress.ip_address() 
+validation + shell=False) is active and effective.

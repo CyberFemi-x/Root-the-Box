@@ -1,0 +1,24 @@
+018: Patch1 - Negative Retest Diagnose Blocked 
+
+Date: 01/08/2026 | Time: 13:44:23
+
+Ran the complete candidate-authored exploit chain (exploit.py) 
+against the patched target (192.168.77.22:8080). The chain failed 
+immediately at the injection-confirmation step (canary not reflected), 
+with the target correctly rejecting the malformed host parameter via IP 
+address validation. No flags were obtained (user_flag: null, root_flag: null), 
+confirming the /diagnose command-injection vulnerability is fully remediated 
+at the root cause. Full run completed in 0.96s.
+{
+  "success": false,
+  "started_at": "2026-08-01T12:43:08Z",
+  "duration_seconds": 0.96,
+  "user_flag": null,
+  "root_flag": null,
+  "cleanup": {
+    "uploads_artifacts": false,
+    "flag_capture_file": false,
+    "authorized_keys_entry": false
+  },
+  "error": "canary not reflected; raw={'error': \"'127.0.0.1; echo CANARY-1785588188' does not appear to be an IPv4 or IPv6 address\"}"
+}

@@ -1,0 +1,15 @@
+020: Patch2 - Tar Wildcard Blocked  
+
+Date: 01/08/2026 | Time: 13:54:23
+
+Tested support-backup-patched's tar invocation directly on the
+patched target (192.168.77.22) by recreating the exact 
+checkpoint-injection artifacts (hook.sh, --checkpoint=1, --checkpoint-action=exec=sh 
+hook.sh) used successfully against the vulnerable target. The patched script uses 
+find -type f combined with tar --null --verbatim-files-from --files-from=-, 
+which enumerates files by name explicitly and treats all filenames literally 
+regardless of leading --, rather than relying on shell wildcard expansion. 
+Attempting to trigger the hook produced no proof file (ls: cannot access 
+'proof.txt': No such file or directory), confirming the privilege-escalation vector 
+is blocked at the root cause — filenames can no longer be misinterpreted as tar options 
+— rather than through payload filtering.
