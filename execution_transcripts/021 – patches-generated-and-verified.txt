@@ -1,0 +1,46 @@
+021 – Patch Diffs Generated (Both Root Causes)
+
+Date: 01/08/2026 | Time:14:25:48
+Procedure:
+
+With both exploited vulnerability classes confirmed and remediation
+verified behaviourally (see transcripts 018-020), minimal patch diffs were
+generated for the patches/ deliverable, one per root cause.
+
+Patch 1 - /diagnose command injection:
+The supplied app.py implements both the vulnerable and patched logic
+side-by-side, selected via the server-side NETFORGE_MODE environment
+variable (not attacker-influenceable, as it is not part of the HTTP
+request surface). Each branch was extracted into a standalone file
+(diagnose-vulnerable-branch.py / diagnose-patched-branch.py) and diffed:
+
+    git diff --no-index diagnose-vulnerable-branch.py diagnose-patched-branch.py > patches/diagnose-endpoint.patch
+
+Resulting diff:
+
+    - result = subprocess.run(f"getent hosts {host}", shell=True, ...)
+    + safe_host = str(ipaddress.ip_address(host))
+    + result = subprocess.run(["getent", "hosts", safe_host], shell=False, ...)
+
+Patch 2 - support-backup tar wildcard/checkpoint injection:
+The supplied source provides separate vulnerable and patched scripts
+(support-backup-vulnerable / support-backup-patched). These were diffed
+directly:
+
+    git diff --no-index support-backup-vulnerable support-backup-patched > patches/support-backup.patch
+
+Resulting diff:
+
+    - tar -czf /var/backups/support/latest.tgz *
+    + find . -mindepth 1 -maxdepth 1 -type f -printf '%P\0' |
+    +   tar --null --verbatim-files-from --files-from=- -czf /var/backups/support/latest.tgz
+
+Result:
+
+Both patch diffs saved to patches/. Each represents a structural fix to
+the vulnerable condition (input validation + removal of shell interpretation
+for Patch 1; elimination of shell wildcard expansion and literal filename
+handling for Patch 2), rather than filtering of specific payload characters
+or strings, satisfying the "root cause, not payload filtering" requirement.
+Both fixes were independently verified as blocking their respective attack
+in transcripts 018-020 prior to diff generation.

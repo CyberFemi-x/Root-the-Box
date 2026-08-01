@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<testsuites name="pytest tests"> 
+    <testsuite name="pytest" 
+        errors="0" 
+        failures="0" 
+        skipped="0" 
+        tests="1" 
+        time="6.333" 
+        timestamp="2026-08-01T14:54:27.199216+01:00" 
+        hostname="Akfi">
+    <testcase classname="test_negative_retest" name="test_injection_blocked_on_patched_target" time="3.764" />
+    </testsuite>
+</testsuites>
