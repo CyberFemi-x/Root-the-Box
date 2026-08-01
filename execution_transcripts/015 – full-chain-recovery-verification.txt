@@ -1,0 +1,36 @@
+015 – Full Chain Recovery Verification
+
+Date: 01/08/2026 | Time: 12:20:48
+Procedure:
+
+Following identification that the restored snapshot (clean-vulnerable) predated
+the netforge-support service permission fix and the B2 evidence-marker
+installation, the following recovery steps were performed:
+
+1. Connected to the vulnerable VM via `vagrant ssh vulnerable`.
+2. Re-applied the programme-supplied flag installation script using the
+   assigned evidence marker (UBI-A6-F66C148ABB4D), per README.md section
+   "Existing B1 VM" / B2 correction procedure.
+3. Verified presence of both /home/support/user.txt and /root/root.txt.
+4. Re-executed exploit.py against the recovered target
+   (http://192.168.77.21:8080) to confirm the full chain still functioned
+   correctly from a properly provisioned state.
+
+Result:
+
+The automation framework executed the complete foothold-to-root chain
+successfully:
+
+[+] health check ok
+[+] baseline ok
+[+] injection confirmed
+[+] running as: support
+[+] user flag: UBI{A6_USER_F2557845D2AABFDAEF146657}
+[+] ssh key injected
+[+] root flag: UBI{A6_ROOT_2C8D5ED01A17C5D9ED235939}
+
+This confirmed that the exploit chain logic itself was correct throughout;
+the earlier failures were attributable to an improperly provisioned snapshot,
+not a defect in the candidate-authored code. A corrected snapshot
+(clean-vulnerable-v3) was subsequently saved to serve as the baseline for
+all further testing.

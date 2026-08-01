@@ -1,0 +1,39 @@
+016 – run_chain() Complete: Full Chain With Idempotent Cleanup
+
+Date: 01/08/2026 | Time: 12:44:27
+Procedure:
+
+The individual exploit stages (foothold, SSH key injection, privilege
+escalation, and cleanup) were consolidated into a single wrapper function,
+run_chain(), returning a structured result object suitable for reliability
+logging. The function was executed against the vulnerable target
+(http://192.168.77.21:8080) via:
+
+    python exploit.py http://192.168.77.21:8080
+
+Result:
+
+{
+  "success": true,
+  "started_at": "2026-08-01T11:39:29Z",
+  "duration_seconds": 4.26,
+  "user_flag": "UBI{A6_USER_F2557845D2AABFDAEF146657}",
+  "root_flag": "UBI{A6_ROOT_2C8D5ED01A17C5D9ED235939}",
+  "cleanup": {
+    "uploads_artifacts": true,
+    "flag_capture_file": true,
+    "authorized_keys_entry": true
+  },
+  "error": null
+}
+
+This confirmed the complete chain — command injection foothold, user flag
+retrieval, SSH key injection (NoNewPrivileges bypass), tar checkpoint
+privilege escalation, root flag retrieval, and cleanup of all created
+artifacts (uploaded files, hook script, checkpoint files, SSH key,
+authorized_keys) — executes successfully end to end in a single automated
+run, completing in 4.26 seconds.
+
+An earlier cleanup ordering defect (SSH key removed before dependent
+cleanup steps still requiring SSH access) was identified and corrected
+prior to this run; see 015 and preceding transcripts for diagnostic detail.
