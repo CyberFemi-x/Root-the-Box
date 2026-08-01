@@ -1,15 +1,12 @@
-<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="3" time="22.659" timestamp="2026-08-01T15:03:56.103569+01:00" hostname="Akfi"><testcase classname="test_cleanup" name="test_cleanup_after_successful_run" time="6.345" /><testcase classname="test_cleanup" name="test_cleanup_is_idempotent_when_run_twice" time="3.597"><failure message="assert False is True">def test_cleanup_is_idempotent_when_run_twice():
-        """
-        Running cleanup a second time immediately after a successful run
-        (when nothing is left to remove) must not raise, and should still
-        report success for each step - rm -f and similar are inherently
-        safe to repeat.
-        """
-        run_chain(TARGET_URL, TARGET_HOST, KEY_PATH, PUBKEY_PATH, UPLOADS_DIR)
-    
-        # Nothing should be left over, but calling cleanup again must be safe.
-        second_result = cleanup_target(TARGET_HOST, "support", KEY_PATH, UPLOADS_DIR, PUBKEY_PATH)
-&gt;       assert second_result["uploads_artifacts"] is True
-E       assert False is True
-
-test_cleanup.py:43: AssertionError</failure></testcase><testcase classname="test_cleanup" name="test_cleanup_with_absent_ssh_key_does_not_crash" time="0.849" /></testsuite></testsuites>
+<?xml version="1.0" encoding="utf-8"?>
+<testsuites name="pytest tests">
+<testsuite name="pytest" 
+    errors="0" 
+    failures="0" 
+    skipped="0" 
+    tests="3" 
+    time="12.004" 
+    timestamp="2026-08-01T19:13:44.340697+01:00" 
+    hostname="Akfi">
+<testcase classname="test_cleanup" name="test_cleanup_after_successful_run" time="5.278" /><testcase classname="test_cleanup" name="test_cleanup_is_idempotent_when_run_twice" time="4.419" /><testcase classname="test_cleanup" name="test_cleanup_with_absent_ssh_key_does_not_crash" time="0.532" />
+</testsuite></testsuites>
