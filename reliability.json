@@ -1,0 +1,21 @@
+{
+  "total_runs": 1,
+  "successful_runs": 1,
+  "success_rate": "1/1",
+  "runs": [
+    {
+      "success": true,
+      "started_at": "2026-08-01T11:58:18Z",
+      "duration_seconds": 4.13,
+      "user_flag": "127.0.0.1       localhost\nUBI{A6_USER_F2557845D2AABFDAEF146657}",
+      "root_flag": "UBI{A6_ROOT_2C8D5ED01A17C5D9ED235939}",
+      "cleanup": {
+        "uploads_artifacts": true,
+        "flag_capture_file": true,
+        "authorized_keys_entry": true
+      },
+      "error": null,
+      "run_number": 1
+    }
+  ]
+}
