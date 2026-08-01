@@ -1,0 +1,27 @@
+024 - Combined Test Suite Summary
+
+Date: 01/08/2026 | Time: 20:03:44
+Procedure:
+
+All three test files were run together as a single combined suite to
+produce one summary evidence artifact covering every required test
+scenario.
+
+Command:
+    pytest --junitxml=../all-tests-results.xml -v
+
+Result:
+
+test_cleanup.py::test_cleanup_after_successful_run PASSED
+test_cleanup.py::test_cleanup_is_idempotent_when_run_twice PASSED
+test_cleanup.py::test_cleanup_with_absent_ssh_key_does_not_crash PASSED
+test_negative_retest.py::test_injection_blocked_on_patched_target PASSED
+test_partial_failure.py::test_partial_failure_unreachable_target PASSED
+test_partial_failure.py::test_interruption_mid_chain_still_returns_structured_result PASSED
+
+6 passed in 38.16s
+
+Status: all-tests-results.xml generated, 6/6 tests passing. Combined
+coverage: repeated cleanup, absent preconditions, negative retest,
+partial failure, and interruption - all required test scenarios from
+the Phase 03 checkpoint are represented in this single run.
