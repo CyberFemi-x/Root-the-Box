@@ -1,6 +1,7 @@
 .vagrant/
 *.log
 __pycache__/
+.pytest_cache/
 *.pyc
 *.tmp
 *.tgz
