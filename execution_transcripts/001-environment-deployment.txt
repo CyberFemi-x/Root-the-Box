@@ -1,7 +1,7 @@
 Stage 6: Root the Box - Exploit Chain as Code
 
 Phase:
-Environment Preparation
+001 - Environment Preparation
 
 Activity:
 Vulnerable and Patched VM Deployment

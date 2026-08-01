@@ -4,7 +4,7 @@ Phase:
 Environment Preparation
 
 Activity:
-VM Snapshot Creation
+002 - VM Snapshot Creation
 
 Date:
 2026-07-29
