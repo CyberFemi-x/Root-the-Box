@@ -1,12 +1,12 @@
 {
-  "total_runs": 1,
-  "successful_runs": 1,
-  "success_rate": "1/1",
+  "total_runs": 5,
+  "successful_runs": 5,
+  "success_rate": "5/5",
   "runs": [
     {
       "success": true,
-      "started_at": "2026-08-01T11:58:18Z",
-      "duration_seconds": 4.13,
+      "started_at": "2026-08-01T12:02:08Z",
+      "duration_seconds": 4.38,
       "user_flag": "127.0.0.1       localhost\nUBI{A6_USER_F2557845D2AABFDAEF146657}",
       "root_flag": "UBI{A6_ROOT_2C8D5ED01A17C5D9ED235939}",
       "cleanup": {
@@ -16,6 +16,62 @@
       },
       "error": null,
       "run_number": 1
+    },
+    {
+      "success": true,
+      "started_at": "2026-08-01T12:03:03Z",
+      "duration_seconds": 3.09,
+      "user_flag": "127.0.0.1       localhost\nUBI{A6_USER_F2557845D2AABFDAEF146657}",
+      "root_flag": "UBI{A6_ROOT_2C8D5ED01A17C5D9ED235939}",
+      "cleanup": {
+        "uploads_artifacts": true,
+        "flag_capture_file": true,
+        "authorized_keys_entry": true
+      },
+      "error": null,
+      "run_number": 2
+    },
+    {
+      "success": true,
+      "started_at": "2026-08-01T12:03:45Z",
+      "duration_seconds": 3.33,
+      "user_flag": "127.0.0.1       localhost\nUBI{A6_USER_F2557845D2AABFDAEF146657}",
+      "root_flag": "UBI{A6_ROOT_2C8D5ED01A17C5D9ED235939}",
+      "cleanup": {
+        "uploads_artifacts": true,
+        "flag_capture_file": true,
+        "authorized_keys_entry": true
+      },
+      "error": null,
+      "run_number": 3
+    },
+    {
+      "success": true,
+      "started_at": "2026-08-01T12:04:42Z",
+      "duration_seconds": 3.84,
+      "user_flag": "127.0.0.1       localhost\nUBI{A6_USER_F2557845D2AABFDAEF146657}",
+      "root_flag": "UBI{A6_ROOT_2C8D5ED01A17C5D9ED235939}",
+      "cleanup": {
+        "uploads_artifacts": true,
+        "flag_capture_file": true,
+        "authorized_keys_entry": true
+      },
+      "error": null,
+      "run_number": 4
+    },
+    {
+      "success": true,
+      "started_at": "2026-08-01T12:06:47Z",
+      "duration_seconds": 4.17,
+      "user_flag": "127.0.0.1       localhost\nUBI{A6_USER_F2557845D2AABFDAEF146657}",
+      "root_flag": "UBI{A6_ROOT_2C8D5ED01A17C5D9ED235939}",
+      "cleanup": {
+        "uploads_artifacts": true,
+        "flag_capture_file": true,
+        "authorized_keys_entry": true
+      },
+      "error": null,
+      "run_number": 5
     }
   ]
 }
