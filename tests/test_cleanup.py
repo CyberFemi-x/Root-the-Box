@@ -1,8 +1,7 @@
-"""
-Cleanup verification tests: prove cleanup is idempotent and handles
-success, repeated calls, and absent-precondition cases without error.
-   
-"""
+import sys
+import os
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "exploit_chain"))
+
 from exploit import (
     run_chain,
     cleanup_target,

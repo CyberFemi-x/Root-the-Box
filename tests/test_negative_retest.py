@@ -1,8 +1,7 @@
-"""
-Negative retest: proves the exploit chain fails at the intended
-precondition against the patched target, without obtaining either flag.
+import sys
+import os
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "exploit_chain"))
 
-"""
 import pytest
 from exploit import run_chain
 
