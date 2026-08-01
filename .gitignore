@@ -7,6 +7,5 @@ __pycache__/
 *.zip
 *.bak
 .DS_Store
-Thumbs.dbstage6_key
-stage6_key
+Thumbs.db
 stage6_key
