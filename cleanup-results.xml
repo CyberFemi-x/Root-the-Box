@@ -1,1 +1,18 @@
-<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="0" skipped="0" tests="3" time="12.510" timestamp="2026-08-01T19:28:51.335005+01:00" hostname="Akfi"><testcase classname="test_cleanup" name="test_cleanup_after_successful_run" time="5.637" /><testcase classname="test_cleanup" name="test_cleanup_is_idempotent_when_run_twice" time="5.854" /><testcase classname="test_cleanup" name="test_cleanup_with_absent_ssh_key_does_not_crash" time="0.674" /></testsuite></testsuites>
+<?xml version="1.0" encoding="utf-8"?>
+<testsuites name="pytest tests">
+<testsuite name="pytest" 
+    errors="0" 
+    failures="0" 
+    skipped="0" 
+    tests="3" 
+    time="12.510" 
+    timestamp="2026-08-01T19:28:51.335005+01:00" 
+    hostname="Akfi">
+<testcase classname="test_cleanup" 
+    name="test_cleanup_after_successful_run" 
+    time="5.637" />
+<testcase classname="test_cleanup" 
+    name="test_cleanup_is_idempotent_when_run_twice" time="5.854" />
+<testcase classname="test_cleanup" 
+    name="test_cleanup_with_absent_ssh_key_does_not_crash" time="0.674" />
+</testsuite></testsuites>
