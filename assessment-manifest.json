@@ -1,0 +1,84 @@
+{
+  "schema_version": "1.0",
+  "project_id": "UBI-2026-0588",
+  "variant": "D1",
+  "candidate_binding": "UBI-2026-0588",
+  "assigned_pack": {
+    "file_name": "ethical-hacking-stage-6-shared-b1.tar.gz",
+    "sha256": "be9b5c540f1dab556dbd60d66846880ad147ea0f45394c04b8518a8117eff7ea",
+    "manifest_signature": "b157972f664d7720bd9aec01244e1c4a9b23d10c53b1d2ace25fc8fcb04f98a4",
+    "verified_before_use": true
+  },
+  "commit": "",
+  "supported_environment": {
+    "os": "Windows 10/11 host, Ubuntu 22.04.3 LTS (guest VMs)",
+    "cpu": "2 cores",
+    "memory_gb": 8,
+    "tool_versions": {
+      "vagrant": "2.4.9",
+      "virtualbox": "7.2.6",
+      "python": "3.13.14",
+      "git": "2.41.0.windows.1",
+      "pytest": "9.1.1"
+    }
+  },
+  "commands": {
+    "provision": "vagrant up vulnerable patched",
+    "build": "cd exploit_chain && python exploit.py http://192.168.77.21:8080",
+    "test": "cd tests && pytest --junitxml=../all-tests-results.xml -v",
+    "clean": "vagrant snapshot restore vulnerable clean-vulnerable-v3"
+  },
+  "results": {
+    "public_tests": {
+      "passed": 6,
+      "failed": 0,
+      "report": "all-tests-results.xml"
+    },
+    "runtime_seconds": 3.09,
+    "peak_memory_mb": null,
+    "output_hashes": {
+      "reliability.json": "F5D8DFE1523569DC79AC24E686DAFD220812BEDBA912EF3E43354C1AC00382BA",
+      "negative-retest.xml": "4C2ECE7A6B0E8447B5549A585C4AD2BB355C118241BE52D6773BA1FD67234F3C",
+      "cleanup-results.xml": "D9E993A3878CC2DA98C82BDBF3593E554881E1E2B8F71FAFE2454A3BA281B8FF",
+      "tests/all-tests-results.xml": "BFC1C3DEAD3190414C0F9817BFEBE446EF071B7C92FCF258AFD5A5F44432910E"
+    }
+  },
+  "inputs": [
+    "lab-source/app.py",
+    "lab-source/support-backup-vulnerable",
+    "lab-source/support-backup-patched",
+    "lab-source/Vagrantfile",
+    "lab-source/provision.sh",
+    "lab-source/install-assigned-flags.sh"
+  ],
+  "outputs": [
+    "reliability.json",
+    "negative-retest.xml",
+    "cleanup-results.xml",
+    "tests/all-tests-results.xml",
+    "patches/diagnose-endpoint.patch",
+    "patches/support-backup.patch",
+    "rabbit-hole-analysis.md",
+    {   "success": true,
+        "started_at": "2026-08-01T11:39:29Z",
+        "duration_seconds": 4.26,
+        "user_flag": "UBI{A6_USER_F2557845D2AABFDAEF146657}",
+        "root_flag": "UBI{A6_ROOT_2C8D5ED01A17C5D9ED235939}",
+        "cleanup": {
+            "uploads_artifacts": true,
+            "flag_capture_file": true,
+            "authorized_keys_entry": true
+        },
+    "error": null}
+  ],
+  "manual_preconditions": [
+    "Vagrant vulnerable and patched VMs built from unmodified shared source",
+    "Host-only network (192.168.77.0/24) isolated from production/public routes, per Vagrantfile",
+    "clean-vulnerable-v3 snapshot represents corrected baseline after netforge-support service permission fix and B2 flag installation - see execution-transcripts/015",
+    "clean-patched-v2 snapshot represents corrected baseline for the patched target after identical service permission fix"
+  ],
+  "known_limitations": [
+    "reliability.json 5-run test was executed prior to the URLError safe-failure fix in _http_get; the fix does not alter successful-path behavior, only unreachable-target handling, so prior reliability results remain valid",
+    "assigned_pack fields above reflect the shared B1 base artifact per the private assignment overlay; per the overlay's own correction notice, Stage 6 markers were installed via the supplied install-assigned-flags.sh B2 correction procedure rather than a full B2 archive rebuild"
+  ]
+}
