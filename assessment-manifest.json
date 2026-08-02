@@ -4,12 +4,12 @@
   "variant": "D1",
   "candidate_binding": "UBI-2026-0588",
   "assigned_pack": {
-    "file_name": "ethical-hacking-stage-6-shared-b1.tar.gz",
+    "file_name": "ethical-hacking-stage-6-shared-b2.tar.gz",
     "sha256": "be9b5c540f1dab556dbd60d66846880ad147ea0f45394c04b8518a8117eff7ea",
     "manifest_signature": "b157972f664d7720bd9aec01244e1c4a9b23d10c53b1d2ace25fc8fcb04f98a4",
     "verified_before_use": true
   },
-  "commit": "",
+  "commit": "afb66917df0c07ded4d6de114a22047c84757a5a",
   "supported_environment": {
     "os": "Windows 10/11 host, Ubuntu 22.04.3 LTS (guest VMs)",
     "cpu": "2 cores",
